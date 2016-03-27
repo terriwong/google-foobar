@@ -64,8 +64,6 @@ def answer1(heights):
         for j in range(-heights[i], 0):
             array[j][i] = 1
 
-    # print "array is: ", array
-
     # construct tracker: whenever sees 1, push the index to tracker
     tracker = [ [] for i in range(max(heights)) ]
 
@@ -74,8 +72,6 @@ def answer1(heights):
             if array[i][j] == 1:
                 tracker[i].append(j)            
 
-    # print "tracker is: ", tracker
-    
     # calculate number of 0s between two 1s
     counter = 0
 
@@ -88,7 +84,7 @@ def answer1(heights):
     return counter
 
 
-# second solution to reduce memory used
+# second solution: to reduce memory used
 def answer2(heights):
 
     # construct 2D array with placeholder 0
@@ -99,8 +95,8 @@ def answer2(heights):
         for j in xrange(-heights[i], 0):
             array[j][i] = 1
 
-    # print "array is: ", array
-
+    # tracker is a re-usable list to remember 1's location on every list
+    # counter is the number of 1s seen so far
     tracker = []
     counter = 0
 
@@ -112,9 +108,6 @@ def answer2(heights):
 
         for y in xrange((len(tracker) - 1), 0, -1):
             counter += (tracker[y] - tracker[y - 1] - 1)
-
-        # print "tracker is: ", tracker
-        # print "counter is: ", counter
 
         tracker = []
 
