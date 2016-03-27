@@ -65,6 +65,6 @@ def answer(str):
     
     return "".join(result)
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     print answer("2+3*2")
     print answer("2*4*3+9*3+5")

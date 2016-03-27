@@ -33,5 +33,5 @@ def answer(intervals):
 
     return tracker_max - tracker_min
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     print answer([[10, 14], [4, 18], [19, 20], [19, 20], [13, 20]])

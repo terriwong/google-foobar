@@ -1,3 +1,5 @@
+# Author: Terri Wong <terriwmj@gmail.com>
+
 """
 When it rains it pours
 ======================
