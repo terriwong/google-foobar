@@ -53,7 +53,8 @@ Output:
 
 """
 
-def answer(heights):
+# first solution
+def answer1(heights):
 
     # construct 2D array with placeholder 0
     array = [[ 0 for i in range(len(heights))] for j in range(max(heights))]
@@ -63,6 +64,8 @@ def answer(heights):
         for j in range(-heights[i], 0):
             array[j][i] = 1
 
+    # print "array is: ", array
+
     # construct tracker: whenever sees 1, push the index to tracker
     tracker = [ [] for i in range(max(heights)) ]
 
@@ -71,6 +74,8 @@ def answer(heights):
             if array[i][j] == 1:
                 tracker[i].append(j)            
 
+    # print "tracker is: ", tracker
+    
     # calculate number of 0s between two 1s
     counter = 0
 
@@ -82,6 +87,40 @@ def answer(heights):
 
     return counter
 
+
+# second solution to reduce memory used
+def answer2(heights):
+
+    # construct 2D array with placeholder 0
+    array = [[0 for i in xrange(len(heights))] for j in xrange(max(heights))]
+
+    # update array with 1 (representing X)
+    for i in xrange(len(heights)):
+        for j in xrange(-heights[i], 0):
+            array[j][i] = 1
+
+    # print "array is: ", array
+
+    tracker = []
+    counter = 0
+
+    for i in xrange(len(array)):
+
+        for j in xrange(len(heights)):
+            if array[i][j] == 1:
+                tracker.append(j)
+
+        for y in xrange((len(tracker) - 1), 0, -1):
+            counter += (tracker[y] - tracker[y - 1] - 1)
+
+        # print "tracker is: ", tracker
+        # print "counter is: ", counter
+
+        tracker = []
+
+    return counter
+
+
 if __name__ == '__main__':
-    print answer([1, 4, 2, 5, 1, 2, 3])
-    print answer([1, 2, 3, 2, 1])
+    print answer2([1, 4, 2, 5, 1, 2, 3])
+    print answer2([1, 2, 3, 2, 1])
