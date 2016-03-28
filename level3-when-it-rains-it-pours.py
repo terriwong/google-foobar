@@ -114,6 +114,29 @@ def answer2(heights):
     return counter
 
 
+# third solution: further reduce memory used without constructing 2D array
+def answer3(heights):
+
+    counter = 0
+    tracker = []
+
+    for i in xrange(max(heights)):
+
+        hutches = [1 if (heights[i] - 1 >= 0) else 0 for i in xrange(len(heights))]
+
+        for j in xrange(len(heights)):
+            if hutches[j] == 1:
+                tracker.append(j)
+
+        for y in xrange((len(tracker) - 1), 0, -1):
+            counter += (tracker[y] - tracker[y - 1] - 1)
+
+        heights = [(i - 1) for i in heights]
+        tracker = []
+
+    return counter
+
+
 if __name__ == '__main__':
-    print answer2([1, 4, 2, 5, 1, 2, 3])
-    print answer2([1, 2, 3, 2, 1])
+    print answer3([1, 4, 2, 5, 1, 2, 3])
+    print answer3([1, 2, 3, 2, 1])
